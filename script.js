@@ -558,7 +558,7 @@ function createCrosswordQuiz() {
 
 function generateCrosswordGrid() {
     // Grid layout based on the crossword structure
-    // Grid is 6 cols x 10 rows
+    // Grid is 7 cols x 10 rows
     const grid = [
         // Row 0
         ['black', 'F', 'black', 'black', 'black', 'black', 'black'],

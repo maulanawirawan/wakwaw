@@ -569,7 +569,7 @@ function generateCrosswordGrid() {
         // Row 3
         ['black', 'R', 'black', 'black', 'black', 'black', 'black'],
         // Row 4: CANTIK (horizontal)
-        ['C', 'A', 'N', 'T', 'I', 'K'],
+        ['C', 'A', 'N', 'T', 'I', 'K', 'black'],
         // Row 5
         ['black', 'L', 'black', 'black', 'black', 'A', 'black'],
         // Row 6

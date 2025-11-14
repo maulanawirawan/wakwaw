@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div id="hearts-container"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-btn" aria-label="Toggle music">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- Password Screen -->
+    <div id="passwordScreen" class="screen active">
+        <div class="password-container">
+            <div class="animated-character">
+                <svg id="characterSVG" viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Jerapah Back Legs -->
+                    <rect x="75" y="240" width="14" height="70" rx="7" fill="#E8A87C">
+                        <animate attributeName="height" values="70;72;70" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="111" y="240" width="14" height="70" rx="7" fill="#E8A87C">
+                        <animate attributeName="height" values="70;68;70" dur="3s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Jerapah Body -->
+                    <ellipse id="body" cx="100" cy="200" rx="48" ry="65" fill="#F4A460">
+                        <animate attributeName="ry" values="65;67;65" dur="3s" repeatCount="indefinite"/>
+                    </ellipse>
+
+                    <!-- Jerapah Spots on Body -->
+                    <circle cx="85" cy="185" r="9" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="115" cy="195" r="7" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="92" cy="215" r="8" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="108" cy="225" r="6" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="98" cy="205" r="7" fill="#D2691E" opacity="0.6"/>
+
+                    <!-- Jerapah Long Neck -->
+                    <path d="M 92 130 Q 88 165, 85 200 Q 83 210, 90 230 Q 95 240, 100 240 Q 105 240, 110 230 Q 117 210, 115 200 Q 112 165, 108 130 Z"
+                          fill="#F4A460" stroke="#E8A87C" stroke-width="1"/>
+
+                    <!-- Neck Spots -->
+                    <circle cx="95" cy="150" r="6" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="105" cy="170" r="5" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="90" cy="190" r="6" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="110" cy="210" r="5" fill="#D2691E" opacity="0.6"/>
+
+                    <!-- Jerapah Front Legs -->
+                    <rect x="85" y="240" width="12" height="70" rx="6" fill="#E8A87C">
+                        <animate attributeName="height" values="70;69;70" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="103" y="240" width="12" height="70" rx="6" fill="#E8A87C">
+                        <animate attributeName="height" values="70;71;70" dur="3s" begin="0.5s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Hooves -->
+                    <ellipse cx="82" cy="308" rx="8" ry="5" fill="#8B4513"/>
+                    <ellipse cx="97" cy="308" rx="8" ry="5" fill="#8B4513"/>
+                    <ellipse cx="109" cy="308" rx="8" ry="5" fill="#8B4513"/>
+                    <ellipse cx="118" cy="308" rx="8" ry="5" fill="#8B4513"/>
+
+                    <!-- Jerapah Head -->
+                    <ellipse id="head" cx="100" cy="110" rx="28" ry="32" fill="#F4A460">
+                        <animate attributeName="cy" values="110;108;110" dur="3s" repeatCount="indefinite"/>
+                    </ellipse>
+
+                    <!-- Head Spots -->
+                    <circle cx="88" cy="115" r="4" fill="#D2691E" opacity="0.6"/>
+                    <circle cx="112" cy="120" r="3" fill="#D2691E" opacity="0.6"/>
+
+                    <!-- Jerapah Ears -->
+                    <ellipse cx="78" cy="95" rx="9" ry="14" fill="#F4A460" transform="rotate(-20 78 95)">
+                        <animateTransform attributeName="transform" type="rotate"
+                            values="-20 78 95; -25 78 95; -20 78 95" dur="4s" repeatCount="indefinite"/>
+                    </ellipse>
+                    <ellipse cx="122" cy="95" rx="9" ry="14" fill="#F4A460" transform="rotate(20 122 95)">
+                        <animateTransform attributeName="transform" type="rotate"
+                            values="20 122 95; 25 122 95; 20 122 95" dur="4s" repeatCount="indefinite"/>
+                    </ellipse>
+
+                    <!-- Jerapah Horns (Ossicones) -->
+                    <line x1="85" y1="90" x2="85" y2="78" stroke="#8B4513" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="85" cy="76" r="4" fill="#8B4513"/>
+                    <line x1="115" y1="90" x2="115" y2="78" stroke="#8B4513" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="115" cy="76" r="4" fill="#8B4513"/>
+
+                    <!-- Jerapah Eyes -->
+                    <g id="eyes">
+                        <ellipse id="leftEye" cx="88" cy="105" rx="7" ry="9" fill="white"/>
+                        <circle id="leftPupil" cx="90" cy="105" r="4" fill="#2c3e50">
+                            <animate attributeName="opacity" values="1;1;0;1;1" dur="5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="89" cy="103" r="2" fill="white" opacity="0.8"/>
+
+                        <ellipse id="rightEye" cx="112" cy="105" rx="7" ry="9" fill="white"/>
+                        <circle id="rightPupil" cx="110" cy="105" r="4" fill="#2c3e50">
+                            <animate attributeName="opacity" values="1;1;0;1;1" dur="5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="111" cy="103" r="2" fill="white" opacity="0.8"/>
+                    </g>
+
+                    <!-- Eyelashes -->
+                    <path d="M 82 100 Q 80 98, 82 96" stroke="#8B4513" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 86 98 Q 85 96, 87 94" stroke="#8B4513" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 118 100 Q 120 98, 118 96" stroke="#8B4513" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 114 98 Q 115 96, 113 94" stroke="#8B4513" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+                    <!-- Jerapah Snout -->
+                    <ellipse cx="100" cy="125" rx="18" ry="12" fill="#DEB887"/>
+
+                    <!-- Jerapah Nostrils -->
+                    <ellipse cx="94" cy="126" rx="2.5" ry="3" fill="#8B4513"/>
+                    <ellipse cx="106" cy="126" rx="2.5" ry="3" fill="#8B4513"/>
+
+                    <!-- Jerapah Smile -->
+                    <path id="mouth" d="M 88 132 Q 100 137 112 132" stroke="#D2691E" stroke-width="2.5" fill="none" stroke-linecap="round">
+                        <animate attributeName="d"
+                            values="M 88 132 Q 100 137 112 132; M 88 132 Q 100 138 112 132; M 88 132 Q 100 137 112 132"
+                            dur="6s" repeatCount="indefinite"/>
+                    </path>
+
+                    <!-- Little tail -->
+                    <path d="M 135 215 Q 145 220, 148 225 Q 150 228, 145 230" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round">
+                        <animateTransform attributeName="transform" type="rotate"
+                            values="0 135 215; 5 135 215; 0 135 215; -5 135 215; 0 135 215"
+                            dur="3s" repeatCount="indefinite"/>
+                    </path>
+                    <circle cx="145" cy="230" r="6" fill="#8B4513"/>
+                </svg>
+            </div>
+
+            <h1 class="gradient-text">Enter the Magic Password</h1>
+            <p class="subtitle">Unlock your surprise...</p>
+
+            <input
+                type="password"
+                id="passwordInput"
+                placeholder="Type password here..."
+                autocomplete="off"
+            >
+
+            <button id="enterBtn" class="btn-primary">
+                Enter
+            </button>
+
+            <p id="passwordError" class="error-message"></p>
+            <p class="hint">Hint: It starts with "i" and ends with "you"</p>
+        </div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen">
+        <div class="welcome-container">
+            <div class="welcome-card">
+                <h1 class="gradient-text">Hello My Love! 💕</h1>
+                <p class="welcome-message">I hope you enjoy your stay 😊</p>
+                <p class="made-with-love">Made with all my love 💖</p>
+                <button id="startExploring" class="btn-primary">Start Exploring</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent" class="screen">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">💕 Our Love Story</div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#activities" class="nav-link">Activities</a>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h1 class="hero-title animate-fade-in">Welcome to Our Love Journey 💝</h1>
+                    <p class="hero-subtitle animate-fade-in-delay">Explore the memories, letters, and surprises I've prepared for you</p>
+                    <div class="progress-indicator">
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                        <p id="progressText" class="progress-text">0 / 5 Contents Unlocked</p>
+                    </div>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Letter Card -->
+                    <div class="feature-card" data-content="letter">
+                        <div class="card-icon">💌</div>
+                        <h3>Love Letter</h3>
+                        <p>Read my heartfelt words</p>
+                        <div class="card-status locked">
+                            <i class="fas fa-lock"></i> Unlock with quiz
+                        </div>
+                    </div>
+
+                    <!-- Music Card -->
+                    <div class="feature-card" data-content="music">
+                        <div class="card-icon">🎵</div>
+                        <h3>Our Playlist</h3>
+                        <p>Songs that remind me of you</p>
+                        <div class="card-status locked">
+                            <i class="fas fa-lock"></i> Unlock with quiz
+                        </div>
+                    </div>
+
+                    <!-- Gallery Card -->
+                    <div class="feature-card" data-content="gallery">
+                        <div class="card-icon">📸</div>
+                        <h3>Memories</h3>
+                        <p>Our beautiful moments</p>
+                        <div class="card-status locked">
+                            <i class="fas fa-lock"></i> Unlock with quiz
+                        </div>
+                    </div>
+
+                    <!-- Birthday Card -->
+                    <div class="feature-card" data-content="birthday">
+                        <div class="card-icon">🎂</div>
+                        <h3>Birthday Wish</h3>
+                        <p>A special message for you</p>
+                        <div class="card-status locked">
+                            <i class="fas fa-lock"></i> Unlock with quiz
+                        </div>
+                    </div>
+
+                    <!-- Flower Garden Card -->
+                    <div class="feature-card" data-content="flowers">
+                        <div class="card-icon">🌸</div>
+                        <h3>Flower Garden</h3>
+                        <p>A blooming surprise for you</p>
+                        <div class="card-status locked">
+                            <i class="fas fa-lock"></i> Unlock with quiz
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities" class="section">
+            <div class="container">
+                <h2 class="section-title">🎮 Fun Activities</h2>
+                <p class="section-subtitle">Complete these to unlock special content!</p>
+                
+                <div class="activities-grid">
+                    <!-- Game 1: Crossword -->
+                    <div class="activity-card" data-quiz="crossword">
+                        <div class="activity-icon">🎯</div>
+                        <h3>Love Crossword</h3>
+                        <p>Fill in words about me!</p>
+                        <button class="btn-secondary">Start Puzzle</button>
+                    </div>
+                    
+                    <!-- Game 2: Math Puzzle -->
+                    <div class="activity-card" data-quiz="mathpuzzle">
+                        <div class="activity-icon">🧮</div>
+                        <h3>Math Love Puzzle</h3>
+                        <p>Solve equations to reveal my message!</p>
+                        <button class="btn-secondary">Start Puzzle</button>
+                    </div>
+                    
+                    <!-- Game 3: Memory Match -->
+                    <div class="activity-card" data-quiz="memory">
+                        <div class="activity-icon">🎴</div>
+                        <h3>Memory Hearts</h3>
+                        <p>Match the love symbols!</p>
+                        <button class="btn-secondary">Play Memory</button>
+                    </div>
+
+                    <!-- Game 4: Love Trivia -->
+                    <div class="activity-card" data-quiz="trivia">
+                        <div class="activity-icon">❓</div>
+                        <h3>How Well Do You Know Me?</h3>
+                        <p>Answer questions about me!</p>
+                        <button class="btn-secondary">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="quizContent"></div>
+        </div>
+    </div>
+
+    <!-- Content Modal -->
+    <div id="contentModal" class="modal">
+        <div class="modal-content large">
+            <span class="close-modal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

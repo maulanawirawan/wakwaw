@@ -1096,7 +1096,7 @@ function createLetterContent() {
 
 function createMusicContent() {
     // ⬇️ TARUH LINK PLAYLIST SPOTIFY DI SINI ⬇️
-    const playlistLink = 'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M'; // ← GANTI DENGAN LINK PLAYLIST ANDA!
+    const playlistLink = 'https://open.spotify.com/playlist/2cxXq6GTPXsAEhAfOF4hPy?si=40a67e2c3e134c02&pt=8b063bc83480e0216c12a89662688d39'; // ← GANTI DENGAN LINK PLAYLIST ANDA!
 
     return `
         <div class="content-display">
